@@ -1,0 +1,67 @@
+﻿<Window x:Class="PraktikaActivity.RgistrationOfJuryModerator"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PraktikaActivity"
+        mc:Ignorable="d"
+        Title="Регистрация жюри/модератора" Height="500" Width="800"
+        MinHeight="500" MinWidth="800">
+    <Grid HorizontalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60px"/>
+            <RowDefinition Height="40px"/>
+            <RowDefinition Height="40px"/>
+            <RowDefinition Height="40px"/>
+            <RowDefinition Height="40px"/>
+            <RowDefinition Height="40px"/>
+            <RowDefinition Height="40px"/>
+            <RowDefinition Height="40px"/>
+            <RowDefinition Height="40px"/>
+            <RowDefinition Height="40px"/>
+            <RowDefinition Height="40px"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150px"/>
+            <ColumnDefinition Width="250px"/>
+            <ColumnDefinition Width="150px"/>
+            <ColumnDefinition Width="250px"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Регистрация жюри/модератора"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="IdNumber: " FontSize="16" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="ФИО: " FontSize="16" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="ПОЛ: " FontSize="16" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="4" Grid.Column="0" Text="Роль: " FontSize="16" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="5" Grid.Column="0" Text="Email: " FontSize="16" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="6" Grid.Column="0" Text="Телефон: " FontSize="16" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="7" Grid.Column="0" Text="Направление: " FontSize="16" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="9" Grid.Column="0" Text="Мероприятие: " FontSize="16" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+
+        <TextBox Grid.Row="1" Grid.Column="1" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" IsEnabled="False" x:Name="id"/>
+        <TextBox Grid.Row="2" Grid.Column="1" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" x:Name="FIO"/>
+        <ComboBox Grid.Row="3" Grid.Column="1" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" x:Name="gender"/>
+        <ComboBox Grid.Row="4" Grid.Column="1" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" x:Name="role"/>
+        <TextBox Grid.Row="5" Grid.Column="1" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" x:Name="email"/>
+        <TextBox Grid.Row="6" Grid.Column="1" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" x:Name="phone" Text="+7(___)-__-__" TextAlignment="Center"/>
+        <TextBox Grid.Row="7" Grid.Column="1" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" x:Name="direction"/>
+        <CheckBox Grid.Row="8" Grid.Column="1" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" Content="Прикрепить к мероприятию" Checked="CheckBox_Checked" x:Name="check_events" Unchecked="check_events_Unchecked"/>
+        <ComboBox Grid.Row="9" Grid.Column="1" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" x:Name="events"/>
+
+        <TextBlock Grid.Row="7" Grid.Column="2" FontSize="16" HorizontalAlignment="Right" VerticalAlignment="Center" Text="Пароль: "/>
+        <TextBlock Grid.Row="8" Grid.Column="2" FontSize="16" HorizontalAlignment="Right" VerticalAlignment="Center" Text="Повтор пароля: "/>
+        <CheckBox Grid.Row="9" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 4 0" Checked="pass_check_Checked" Unchecked="pass_check_Unchecked" x:Name="pass_check"/>
+
+        <Border BorderBrush="Black" BorderThickness="2" Grid.Column="3" Grid.Row="1" Grid.RowSpan="6" Height="200" Width="180" HorizontalAlignment="Left" Margin="30 0 0 0" MouseLeftButtonDown="Image_MouseLeftButtonDown">
+            <Image Height="200" Width="180" HorizontalAlignment="Left" MouseLeftButtonDown="Image_MouseLeftButtonDown" x:Name="Image"/>
+        </Border>
+
+        <PasswordBox Grid.Row="7" Grid.Column="3" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" x:Name="password"/>
+        <PasswordBox Grid.Row="8" Grid.Column="3" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" x:Name="repeat_password"/>
+        <TextBlock Grid.Row="9" Grid.Column="3" FontSize="16" HorizontalAlignment="left" VerticalAlignment="Center" Text="Показывать пароль"/>
+
+        <UniformGrid Columns="2" Grid.Row="10" Grid.Column="3">
+            <Button Content="Ок" Margin="2" x:Name="Save" Click="Save_Click"/>
+            <Button Content="Отмена" Margin="2" x:Name="Cancel" Click="Cancel_Click"/>
+        </UniformGrid>
+    </Grid>
+</Window>

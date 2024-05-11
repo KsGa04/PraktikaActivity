@@ -1,0 +1,51 @@
+﻿<Window x:Class="PraktikaActivity.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PraktikaActivity"
+        mc:Ignorable="d"
+        Title="Главное окно" Height="450" Width="800"
+        MinHeight="450" MinWidth="800">
+    <Grid x:Name="mainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <WrapPanel Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Направление" Margin="10,10,10,10" FontSize="20" Foreground="#292d30" FontFamily="Zekton" FontWeight="Bold" x:Name="direction"/>
+                <ComboBox Name="CmbDirection" DisplayMemberPath="DirectionName" Height="30" Width="200" FontSize="15" SelectionChanged="CmbDirection_SelectionChanged"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Дата:" FontSize="20" Margin="10,10,10,10" Foreground="#292d30" FontFamily="Zekton" FontWeight="Bold" x:Name="data"/>
+                <ComboBox Name="CmbData" DisplayMemberPath="StartDate" Height="30" Width="200" SelectionChanged="CmbData_SelectionChanged"/>
+            </StackPanel>
+            <Button Content="Авторизация" Width="100" Height="30" Margin="10" x:Name="authorization" Click="authorization_Click"/>
+        </WrapPanel>
+        <ListView x:Name="Lucas" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Stretch" Grid.Row="1">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Width="240">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Image Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Source="{Binding Path=GetPhoto}" Height="150" Width="150"/>
+                        <TextBlock Grid.Row="1" TextWrapping="Wrap" Margin="0 5 0 0" FontFamily="Zekton" TextAlignment="Center" FontSize="14" Text="{Binding Path=EventName}" HorizontalAlignment="Center"/>
+                        <TextBlock Grid.Row="2" TextWrapping="Wrap" Margin="0 5 0 0" FontFamily="Zekton" TextAlignment="Center" FontSize="14" Text="{Binding Path=DirectionName}" HorizontalAlignment="Center"/>
+                        <TextBlock Grid.Row="3" Margin="0 5 0 0" FontFamily="Zekton" TextAlignment="Center" FontSize="14" Text="{Binding Path=StartDate}" HorizontalAlignment="Center"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Window>
