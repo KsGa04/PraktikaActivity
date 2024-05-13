@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EasyCaptcha.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,12 @@ namespace PraktikaActivity
     public partial class Authorization : Window
     {
         public ActivityEntities db = new ActivityEntities();
+        string answer = "";
+        int incorrectCaptchaAttempts = 0;
         public Authorization()
         {
             InitializeComponent();
+            RemadeCaptcha();
         }
         public static bool PerformAuthorization(int userId, string password)
         {
@@ -58,42 +62,70 @@ namespace PraktikaActivity
                 }
             }
         }
+        private void RemadeCaptcha()
+        {
+            AuthCaptcha.CreateCaptcha(Captcha.LetterOption.Alphanumeric, 4);
+        }
         private void autho_Click(object sender, RoutedEventArgs e)
         {
-            int id = Convert.ToInt32(IdNumber.Text);
-            if (db.Users.Where(x => x.Id == id || x.Password == Pass.Password).Any())
+            using (ActivityEntities db = new ActivityEntities())
             {
-                Users users = db.Users.Where(x => x.Id == id || x.Password == Pass.Password).FirstOrDefault();
-                switch (users.RoleId)
+                answer = Answer.Text;
+                if (incorrectCaptchaAttempts < 3)
                 {
-                    case 1:
-                        Participant participant = new Participant();
-                        participant.Show();
-                        this.Hide();
-                        break;
-                    case 2:
-                        Moderator moderator = new Moderator();
-                        moderator.Show();
-                        this.Hide();
-                        break;
-                    case 3:
-                        Jury jury = new Jury();
-                        jury.Show();
-                        this.Hide();
-                        break;
-                    case 4:
-                        Organaizer organaizer = new Organaizer(users);
-                        organaizer.Show();
-                        this.Hide();
-                        break;
-                    default:
-                        MessageBox.Show("Данный пользователь не имеет роли");
-                        break;
+                    if (answer != AuthCaptcha.CaptchaText)
+                    {
+                        incorrectCaptchaAttempts += 1;
+                        MessageBox.Show("Неверная CAPTCHA");
+                    }
+                    else
+                    {
+                        int id = Convert.ToInt32(IdNumber.Text);
+                        var result = db.Users.Where(x => x.Id == id && x.Password == Pass.Password).FirstOrDefault();
+                        if (result != null)
+                        {
+                            {
+                                CurrentUser.currentUserId = result.Id;
+
+                                if (result.RoleId == 1)
+                                {
+                                    Participant participant = new Participant();
+                                    participant.Show();
+                                    this.Close();
+                                }
+                                else if (result.RoleId == 2)
+                                {
+                                    Moderator moderator = new Moderator();
+                                    moderator.Show();
+                                    this.Close();
+                                }
+                                else if (result.RoleId == 3)
+                                {
+                                    Jury jury = new Jury();
+                                    jury.Show();
+                                    this.Close();
+                                }
+                                else if (result.RoleId == 4)
+                                {
+                                    Organaizer organaizer = new Organaizer();
+                                    organaizer.Show();
+                                    this.Close();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Неправильный email или пароль");
+                                }
+                            }
+                        }
+                    }
                 }
-            }
-            else
-            {
-                MessageBox.Show("Данный пользователь отсутсвтует");
+                    else
+                {
+                    MessageBox.Show("Слишком много неверных попыток. Система заблокирована на 10 секунд.");
+                    System.Threading.Thread.Sleep(10000);
+                    incorrectCaptchaAttempts -= 1;
+                }
+                
             }
         }
     }

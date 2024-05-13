@@ -16,7 +16,7 @@ namespace UnitTestProject
         public void TestValidPhoneNumber()
         {
             // Arrange
-            string validPhoneNumber = "+7(123) - 456-78-90";
+            string validPhoneNumber = "+7(123)-456-78-90";
 
             // Act
             bool isPhoneNumberValid = RgistrationOfJuryModerator.IsPhoneNumberValid(validPhoneNumber);
@@ -29,7 +29,7 @@ namespace UnitTestProject
         public void TestInvalidPhoneNumberWithIncorrectFormat()
         {
             // Arrange
-            string invalidPhoneNumber = "7(123)-456-78-90";
+            string invalidPhoneNumber = "7(123) - 456-78-90";
 
             // Act
             bool isPhoneNumberValid = RgistrationOfJuryModerator.IsPhoneNumberValid(invalidPhoneNumber);

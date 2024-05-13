@@ -43,7 +43,7 @@
         <ComboBox Grid.Row="4" Grid.Column="1" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" x:Name="role"/>
         <TextBox Grid.Row="5" Grid.Column="1" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" x:Name="email"/>
         <TextBox Grid.Row="6" Grid.Column="1" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" x:Name="phone" Text="+7(___)-__-__" TextAlignment="Center"/>
-        <TextBox Grid.Row="7" Grid.Column="1" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" x:Name="direction"/>
+        <ComboBox Grid.Row="7" Grid.Column="1" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" x:Name="direction"/>
         <CheckBox Grid.Row="8" Grid.Column="1" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" Content="Прикрепить к мероприятию" Checked="CheckBox_Checked" x:Name="check_events" Unchecked="check_events_Unchecked"/>
         <ComboBox Grid.Row="9" Grid.Column="1" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" x:Name="events"/>
 

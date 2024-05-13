@@ -23,5 +23,12 @@ namespace PraktikaActivity
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Profile profile = new Profile();
+            profile.Show();
+            this.Hide();
+        }
     }
 }

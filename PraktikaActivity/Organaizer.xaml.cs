@@ -19,9 +19,11 @@ namespace PraktikaActivity
     /// </summary>
     public partial class Organaizer : Window
     {
-        public Organaizer(Users users)
+        ActivityEntities db = new ActivityEntities();
+        public Organaizer()
         {
             InitializeComponent();
+            Users users = db.Users.Where(x => x.Id == CurrentUser.currentUserId).FirstOrDefault();
             DateTime currentTime = DateTime.Now;
             int currentHour = currentTime.Hour;
 
@@ -47,6 +49,12 @@ namespace PraktikaActivity
         {
             RgistrationOfJuryModerator rgistrationOfJuryModerator = new RgistrationOfJuryModerator();
             rgistrationOfJuryModerator.Show();
+        }
+
+        private void Profile_Click(object sender, RoutedEventArgs e)
+        {
+            Profile profile = new Profile();
+            profile.Show();
         }
     }
 }

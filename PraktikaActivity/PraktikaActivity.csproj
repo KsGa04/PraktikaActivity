@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EasyCaptcha.Wpf, Version=0.9.0.3, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\EasyCaptcha.Wpf.0.9.0.3\lib\net45\EasyCaptcha.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -103,6 +106,9 @@
     <Compile Include="Moderator.xaml.cs">
       <DependentUpon>Moderator.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Profile.xaml.cs">
+      <DependentUpon>Profile.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RgistrationOfJuryModerator.xaml.cs">
       <DependentUpon>RgistrationOfJuryModerator.xaml</DependentUpon>
     </Compile>
@@ -147,6 +153,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Participant.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Profile.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

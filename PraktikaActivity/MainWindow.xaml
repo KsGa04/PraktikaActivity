@@ -42,7 +42,7 @@
                         <Image Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Source="{Binding Path=GetPhoto}" Height="150" Width="150"/>
                         <TextBlock Grid.Row="1" TextWrapping="Wrap" Margin="0 5 0 0" FontFamily="Zekton" TextAlignment="Center" FontSize="14" Text="{Binding Path=EventName}" HorizontalAlignment="Center"/>
                         <TextBlock Grid.Row="2" TextWrapping="Wrap" Margin="0 5 0 0" FontFamily="Zekton" TextAlignment="Center" FontSize="14" Text="{Binding Path=DirectionName}" HorizontalAlignment="Center"/>
-                        <TextBlock Grid.Row="3" Margin="0 5 0 0" FontFamily="Zekton" TextAlignment="Center" FontSize="14" Text="{Binding Path=StartDate}" HorizontalAlignment="Center"/>
+                        <TextBlock Grid.Row="3" Margin="0 5 0 0" FontFamily="Zekton" TextAlignment="Center" FontSize="14" Text="{Binding Path=StartDate, StringFormat=yyyy-MM-dd}" HorizontalAlignment="Center"/>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>

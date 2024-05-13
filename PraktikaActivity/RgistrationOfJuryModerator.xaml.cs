@@ -39,8 +39,16 @@ namespace PraktikaActivity
 
             int newId = GenerateUniqueId();
             id.Text = newId.ToString();
+            foreach (var d in db.Directions)
+            {
+                direction.Items.Add(d.DirectionName);
+            }
+            foreach (var d in db.Events)
+            {
+                events.Items.Add(d.EventName);
+            }
         }
-        private static readonly Regex _phoneNumberRegex = new Regex(@"^\+7\((\d{3})\)\s-\s(\d{3})-(\d{2})-(\d{2})$");
+        private static readonly Regex _phoneNumberRegex = new Regex(@"^\+7\((\d{3})\)-(\d{3})-(\d{2})-(\d{2})$");
 
         public static bool IsPhoneNumberValid(string phoneNumber)
         {
@@ -50,14 +58,9 @@ namespace PraktikaActivity
         {
             using (ActivityEntities db = new ActivityEntities())
             {
-                Random random = new Random();
                 int newId;
-
-                do
-                {
-                    newId = random.Next(1000, 10000);
-                } while (db.Users.Any(u => u.Id == newId));
-
+                var maxId = db.Users.Max(x => (int?)x.Id) ?? 0;
+                newId = maxId + 1;
                 return newId;
             }
         }
@@ -92,7 +95,7 @@ namespace PraktikaActivity
         }
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            if (id.Text == string.Empty || FIO.Text == string.Empty || email.Text == string.Empty || phone.Text == string.Empty || direction.Text == string.Empty || events.Text == string.Empty || password.Password == string.Empty || repeat_password.Password == string.Empty || gender.SelectedIndex == -1 || role.SelectedIndex == -1) {
+            if ( FIO.Text == string.Empty || email.Text == string.Empty || phone.Text == string.Empty || direction.Text == string.Empty || password.Password == string.Empty || repeat_password.Password == string.Empty || gender.SelectedIndex == -1 || role.SelectedIndex == -1) {
                 MessageBox.Show("Заполните все поля");
             }
             else
@@ -148,14 +151,15 @@ namespace PraktikaActivity
                             }
                             if (role.SelectedIndex == 0)
                             {
-                                users.RoleId = role.SelectedIndex + 1;
+                                users.RoleId = role.SelectedIndex + 2;
                             }
                             else
                             {
-                                users.RoleId = role.SelectedIndex + 2;
+                                users.RoleId = role.SelectedIndex + 3;
                             }
                             db.Users.Add(users);
                             db.SaveChanges();
+                            MessageBox.Show("Пользователь добавлен");
                         }
                         else
                         {

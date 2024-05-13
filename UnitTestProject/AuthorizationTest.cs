@@ -12,7 +12,7 @@ namespace UnitTestProject
         {
             // Arrange
             int userId = 1;
-            string password = "t1Os4A";
+            string password = "Abc12345!";
 
             // Act
             bool isAuthorized = Authorization.PerformAuthorization(userId, password);

@@ -11,7 +11,8 @@ namespace PraktikaActivity
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.IO;
+
     public partial class Users
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -38,5 +39,14 @@ namespace PraktikaActivity
         public virtual Roles Roles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Activities> Activities { get; set; }
+
+        public string ImgPath
+        {
+            get
+            {
+                string musicPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Users/" + Photo);
+                return musicPath;
+            }
+        }
     }
 }
